@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contact Us - Simply Links</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #fcfcfa;
+      color: #222;
+    }
+
+    .page-wrap {
+      width: 100%;
+      padding: 40px 20px;
+      display: flex;
+      justify-content: center;
+    }
+
+    .container {
+      width: 100%;
+      max-width: 700px;
+      background: #ffffff;
+      padding: 30px;
+      border-radius: 12px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+      border: 1px solid #e5e5e5;
+    }
+
+    h1 {
+      text-align: center;
+      font-size: 34px;
+      margin: 0 0 30px;
+      color: #1f2b44;
+    }
+
+    label {
+      display: block;
+      font-size: 15px;
+      margin-bottom: 8px;
+      color: #333;
+    }
+
+    input[type="text"],
+    textarea {
+      width: 100%;
+      border: 1px solid #cfcfcf;
+      border-radius: 8px;
+      padding: 12px 14px;
+      font-size: 15px;
+      margin-bottom: 18px;
+      outline: none;
+    }
+
+    input:focus,
+    textarea:focus {
+      border-color: #4facfe;
+      box-shadow: 0 0 0 3px rgba(79,172,254,0.15);
+    }
+
+    textarea {
+      min-height: 160px;
+      resize: vertical;
+    }
+
+    .submit-btn {
+      width: 100%;
+      border: none;
+      border-radius: 8px;
+      background: #4facfe;
+      color: #ffffff;
+      font-size: 15px;
+      padding: 12px;
+      cursor: pointer;
+      transition: background 0.2s ease;
+    }
+
+    .submit-btn:hover {
+      background: #1e88e5;
+    }
+
+    .back-link {
+      display: block;
+      text-align: center;
+      margin-top: 20px;
+      text-decoration: none;
+      color: #1e88e5;
+      font-size: 14px;
+    }
+
+    @media (max-width: 600px) {
+      .container {
+        padding: 20px;
+      }
+
+      h1 {
+        font-size: 26px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="page-wrap">
+    <div class="container">
+      <h1>Contact Us</h1>
+
+      <form action="#" method="post">
+        <label for="firstName">First Name</label>
+        <input type="text" id="firstName" name="firstName" placeholder="Your name..">
+
+        <label for="lastName">Last Name</label>
+        <input type="text" id="lastName" name="lastName" placeholder="Your last name..">
+
+        <label for="subject">Subject</label>
+        <textarea id="subject" name="subject" placeholder="Write something.."></textarea>
+
+        <button type="submit" class="submit-btn">Submit</button>
+      </form>
+
+      <a href="index.html" class="back-link">Back to home</a>
+    </div>
+  </div>
+
+</body>
+</html>

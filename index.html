@@ -1,0 +1,864 @@
+<!DOCTYPE html>  <html lang="en">  
+<head>  
+  <meta charset="UTF-8">  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">  
+  <title>Simply Links</title>  
+  <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap" rel="stylesheet">    <style>  
+    * {  
+      box-sizing: border-box;  
+    }  
+  
+    :root {  
+      --site-bg: #fcfcfa;  
+      --card-bg: #fcfcfa;  
+      --border-soft: #eeeeee;  
+      --text-main: #222222;  
+    }  
+  
+    body {  
+      margin: 0;  
+      font-family: Arial, sans-serif;  
+      background: var(--site-bg);  
+      color: var(--text-main);  
+      overflow-x: hidden;  
+    }  
+  
+    .hero {  
+      min-height: 100vh;  
+      display: flex;  
+      justify-content: flex-start;  
+      align-items: center;  
+      flex-direction: column;  
+      position: relative;  
+      background: var(--site-bg);  
+      padding: 10px 20px 40px;  
+      overflow: hidden;  
+    }  
+  
+    .language-switcher {  
+      position: absolute;  
+      top: 20px;  
+      left: 25px;  
+      z-index: 100;  
+    }  
+  
+    .language-switcher select {  
+      padding: 10px 14px;  
+      border-radius: 10px;  
+      border: 1px solid #d9d9d9;  
+      outline: none;  
+      font-size: 14px;  
+      cursor: pointer;  
+      background: var(--card-bg);  
+      box-shadow: 0 4px 14px rgba(0, 0, 0, 0.08);  
+      direction: ltr;  
+      text-align: left;  
+    }  
+  
+    .title-row {  
+      position: relative;  
+      width: min(1200px, 96vw);  
+      height: 170px;  
+      margin-top: 0;  
+      margin-bottom: 10px;  
+      overflow: visible;  
+    }  
+  
+    .title {  
+      position: absolute;  
+      left: 355px;  
+      top: 48%;  
+      transform: translateY(-50%);  
+      font-size: 100px;  
+      color: #000000;  
+      font-family: "Great Vibes", cursive;  
+      text-shadow: none;  
+      letter-spacing: 2px;  
+      white-space: nowrap;  
+      z-index: 1;  
+    }  
+  
+    .dog-wrap {  
+      position: absolute;  
+      left: calc(100vw + 260px);  
+      top: 110px;  
+      width: 240px;  
+      height: 240px;  
+      z-index: 9999;  
+      pointer-events: none;  
+      background: transparent;  
+      opacity: 1;  
+      overflow: hidden;  
+    }  
+  
+    .dog-wrap video {  
+      width: 106%;  
+      height: 106%;  
+      object-fit: cover;  
+      object-position: center 52%;  
+      display: block;  
+      background: transparent;  
+      border: none;  
+      box-shadow: none;  
+      border-radius: 0;  
+      mix-blend-mode: normal;  
+      transform: translate(-3%, -2%);  
+      filter: brightness(1.01) contrast(0.99);  
+    }  
+  
+    .box {  
+      width: 380px;  
+      max-width: 100%;  
+      background: #ffffff;  
+      border-radius: 18px;  
+      padding: 28px;  
+      text-align: center;  
+      box-shadow: 0 14px 40px rgba(0, 0, 0, 0.12);  
+      border: 1px solid #e3e3e3;  
+      margin-top: 10px;  
+    }  
+  
+    .subtitle {  
+      margin: 0 0 18px;  
+      font-size: 24px;  
+      color: #2b2b2b;  
+    }  
+  
+    input[type="text"] {  
+      width: 100%;  
+      padding: 12px 14px;  
+      border-radius: 10px;  
+      border: 1px solid #cfd8dc;  
+      outline: none;  
+      font-size: 15px;  
+      margin-bottom: 14px;  
+      direction: ltr;  
+      text-align: left;  
+      background: #ffffff;  
+    }  
+  
+    button {  
+      width: 100%;  
+      padding: 12px;  
+      border: none;  
+      border-radius: 10px;  
+      background: #4facfe;  
+      color: white;  
+      font-size: 15px;  
+      cursor: pointer;  
+      margin-top: 10px;  
+    }  
+  
+    button:hover {  
+      background: #1e88e5;  
+    }  
+  
+    #status {  
+      margin-top: 16px;  
+      min-height: 22px;  
+      color: #333;  
+      font-size: 14px;  
+      white-space: pre-wrap;  
+    }  
+  
+    .info-section {  
+      width: 100%;  
+      background: var(--site-bg);  
+      padding: 0 20px 55px;  
+      display: flex;  
+      justify-content: center;  
+    }  
+  
+    .info-box {  
+      width: 100%;  
+      max-width: 920px;  
+      background: var(--card-bg);  
+      border-radius: 18px;  
+      padding: 10px 20px;  
+      color: #333;  
+    }  
+  
+    #infoText {  
+      margin: 0 auto;  
+      max-width: 760px;  
+      font-size: 19px;  
+      line-height: 1.9;  
+      letter-spacing: 0;  
+      word-spacing: 0;  
+      color: #2f2f2f;  
+      text-align: justify;  
+      text-align-last: left;  
+      text-justify: inter-word;  
+      white-space: normal;  
+      hyphens: none;  
+      -webkit-hyphens: none;  
+      -ms-hyphens: none;  
+      overflow-wrap: normal;  
+      word-break: normal;  
+    }  
+  
+    .donation-section {  
+      width: 100%;  
+      background: var(--site-bg);  
+      padding: 50px 20px;  
+      display: flex;  
+      justify-content: center;  
+    }  
+  
+    .donation-box {  
+      width: 100%;  
+      max-width: 1000px;  
+      background: #f9d6d6;  
+      border-radius: 18px;  
+      padding: 30px;  
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.06);  
+      border: 1px solid #efbcbc;  
+      display: flex;  
+      justify-content: space-between;  
+      align-items: center;  
+      gap: 20px;  
+      flex-wrap: wrap;  
+    }  
+  
+    .donation-text {  
+      font-size: 22px;  
+      color: #333333;  
+      line-height: 1.5;  
+      flex: 1 1 100%;  
+    }  
+  
+    .heart {  
+      color: red;  
+    }  
+  
+    .buttons {  
+      display: flex;  
+      gap: 12px;  
+      flex-wrap: wrap;  
+    }  
+  
+    .donation-button {  
+      display: inline-block;  
+      text-decoration: none;  
+      padding: 14px 22px;  
+      border-radius: 10px;  
+      font-size: 16px;  
+      font-weight: bold;  
+      color: white;  
+    }  
+  
+    .paypal {  
+      background: #0070ba;  
+    }  
+  
+    .paypal:hover {  
+      background: #005ea6;  
+    }  
+  
+    .revolut {  
+      background: #000000;  
+    }  
+  
+    .revolut:hover {  
+      background: #333333;  
+    }  
+  
+    .site-footer {  
+      width: 100%;  
+      background: #f5f5f2;  
+      border-top: 1px solid #e6e6e6;  
+      padding: 24px 20px 28px;  
+      display: flex;  
+      justify-content: center;  
+    }  
+  
+    .footer-inner {  
+      width: 100%;  
+      max-width: 1000px;  
+      display: flex;  
+      justify-content: center;  
+      align-items: center;  
+      gap: 18px;  
+      flex-wrap: wrap;  
+      text-align: center;  
+    }  
+  
+    .footer-link {  
+      color: #333333;  
+      text-decoration: none;  
+      font-size: 14px;  
+      transition: opacity 0.2s ease;  
+    }  
+  
+    .footer-link:hover {  
+      opacity: 0.7;  
+    }  
+  
+    .footer-separator {  
+      color: #999999;  
+      font-size: 14px;  
+    }  
+  
+    .rtl-text {  
+      direction: rtl;  
+      text-align: right;  
+      unicode-bidi: plaintext;  
+      font-family: Tahoma, Arial, sans-serif;  
+    }  
+  
+    .rtl-box {  
+      text-align: right;  
+    }  
+  
+    .rtl-buttons {  
+      justify-content: flex-end;  
+    }  
+  
+    @media (max-width: 900px) {  
+      .title {  
+        font-size: 78px;  
+        top: 48%;  
+        left: 270px;  
+      }  
+  
+      .title-row {  
+        height: 150px;  
+      }  
+  
+      .dog-wrap {  
+        width: 180px;  
+        height: 180px;  
+      }  
+  
+      #infoText {  
+        font-size: 18px;  
+        line-height: 1.85;  
+        max-width: 700px;  
+      }  
+    }  
+  
+    @media (max-width: 700px) {  
+      .title {  
+        font-size: 56px;  
+        left: 205px;  
+        top: 48%;  
+      }  
+  
+      .title-row {  
+        height: 120px;  
+      }  
+  
+      .language-switcher {  
+        top: 16px;  
+        left: 16px;  
+      }  
+  
+      .language-switcher select {  
+        font-size: 13px;  
+        padding: 8px 10px;  
+      }  
+  
+      .dog-wrap {  
+        width: 130px;  
+        height: 130px;  
+      }  
+  
+      .box {  
+        width: 100%;  
+        max-width: 380px;  
+      }  
+  
+      .donation-box {  
+        flex-direction: column;  
+        text-align: center;  
+      }  
+  
+      .buttons {  
+        justify-content: center;  
+      }  
+  
+      .donation-text {  
+        font-size: 18px;  
+      }  
+  
+      .info-box {  
+        font-size: 16px;  
+      }  
+  
+      #infoText {  
+        font-size: 16px;  
+        line-height: 1.8;  
+        max-width: 100%;  
+        text-align: left;  
+        text-align-last: left;  
+      }  
+  
+      .rtl-buttons {  
+        justify-content: center;  
+      }  
+  
+      .footer-inner {  
+        gap: 10px;  
+      }  
+  
+      .footer-link,  
+      .footer-separator {  
+        font-size: 13px;  
+      }  
+    }  
+  </style>  </head>  
+<body>    <div class="hero">  
+    <div class="language-switcher">  
+      <select id="languageSelect" onchange="changeLanguage()">  
+        <option value="en">English</option>  
+        <option value="es">Spanish</option>  
+        <option value="de">German</option>  
+        <option value="fr">French</option>  
+        <option value="it">Italian</option>  
+        <option value="pt">Portuguese</option>  
+        <option value="ru">Russian</option>  
+        <option value="zh">Chinese</option>  
+        <option value="ja">Japanese</option>  
+        <option value="ar">Arabic</option>  
+      </select>  
+    </div>  <div class="title-row" id="titleRow">  
+  <div class="title" id="siteTitle">Simply Links</div>  
+</div>  
+
+<div class="dog-wrap" id="dogWrap">  
+  <video id="dogVideo" muted playsinline preload="auto">  
+    <source src="petal_2011.mp4" type="video/mp4">  
+  </video>  
+</div>  
+
+<div class="box" id="mainBox">  
+  <h2 class="subtitle" id="subtitle">Convert</h2>  
+  <input id="url" type="text" placeholder="Paste direct file link here">  
+  <button id="mp3Button" onclick="convert('mp3')">Convert to MP3</button>  
+  <button id="mp4Button" onclick="convert('mp4')">Convert to MP4</button>  
+  <div id="status"></div>  
+</div>
+
+  </div>    <div class="info-section">  
+    <div class="info-box" id="infoBox">  
+      <p id="infoText">  
+        Simply Links is a powerful and easy-to-use tool that allows you to download and convert YouTube videos quickly and without limitations. With just a few clicks, you can convert your favorite videos or music into the quality you prefer and save them directly to your device. No registration is required and no complicated steps are involved - Simply Links gives you the freedom to download unlimited content from YouTube and other popular social media platforms. Whether you want music or videos, the process is fast, smooth, and reliable. It supports the most popular file formats, such as MP3 and MP4, so you can always get your content exactly the way you need it.  
+      </p>  
+    </div>  
+  </div>    <div class="donation-section">  
+    <div class="donation-box" id="donationBox">  
+      <div class="donation-text" id="donationText">  
+        Donate to Simply Links to support my work and help keep this project running <span class="heart">&#10084;</span>  
+      </div>  <div class="buttons" id="buttonGroup">  
+    <a class="donation-button paypal" id="paypalBtn" href="https://paypal.me/periklisk599" target="_blank">Donate via PayPal</a>  
+    <a class="donation-button revolut" id="revolutBtn" href="https://revolut.me/periklis96" target="_blank">Donate via Revolut</a>  
+  </div>  
+</div>
+
+  </div>    <footer class="site-footer">  
+    <div class="footer-inner">  
+      <a href="about.html" class="footer-link">About us</a>  
+      <span class="footer-separator">|</span>  
+      <a href="contact.html" class="footer-link">Contact</a>  
+      <span class="footer-separator">|</span>  
+      <a href="privacy-policy.html" class="footer-link">Privacy Policy</a>  
+      <span class="footer-separator">|</span>  
+      <a href="terms-of-service.html" class="footer-link">Terms of Service</a>  
+      <span class="footer-separator">|</span>  
+      <a href="dmca-copyright-policy.html" class="footer-link">DMCA / Copyright Policy</a>  
+    </div>  
+  </footer>    <script>  
+    const translations = {  
+      en: {  
+        subtitle: "Convert",  
+        placeholder: "Paste direct file link here",  
+        mp3Button: "Convert to MP3",  
+        mp4Button: "Convert to MP4",  
+        pasteFirst: "Please paste a link first.",  
+        downloading: "Downloading...",  
+        done: "Done!",  
+        errorPrefix: "Something went wrong: ",  
+        requestFailed: "Request failed",  
+        info1: "Simply Links is a powerful and easy-to-use tool that allows you to download and convert YouTube videos quickly and without limitations. With just a few clicks, you can convert your favorite videos or music into the quality you prefer and save them directly to your device.",  
+        info2: "No registration is required and no complicated steps are involved - Simply Links gives you the freedom to download unlimited content from YouTube and other popular social media platforms. Whether you want music or videos, the process is fast, smooth, and reliable.",  
+        info3: "It supports the most popular file formats, such as MP3 and MP4, so you can always get your content exactly the way you need it.",  
+        donationText: "Donate to Simply Links to support my work and help keep this project running <span class='heart'>&#10084;</span>",  
+        paypalBtn: "Donate via PayPal",  
+        revolutBtn: "Donate via Revolut"  
+      },  
+  
+      es: {  
+        subtitle: "Convertir",  
+        placeholder: "Pega el enlace aqui",  
+        mp3Button: "Convertir a MP3",  
+        mp4Button: "Convertir a MP4",  
+        pasteFirst: "Pega un enlace primero.",  
+        downloading: "Descargando...",  
+        done: "Listo!",  
+        errorPrefix: "Error: ",  
+        requestFailed: "Solicitud fallida",  
+        info1: "Simply Links es una herramienta potente y facil de usar que te permite descargar y convertir videos rapidamente y sin limitaciones. Con solo unos clics, puedes convertir tus videos o musica favoritas a la calidad que prefieras y guardarlas directamente en tu dispositivo.",  
+        info2: "No se requiere registro ni hay pasos complicados - Simply Links te da la libertad de descargar contenido ilimitado de YouTube y otras plataformas populares. Ya sea que quieras musica o videos, el proceso es rapido, fluido y confiable.",  
+        info3: "Admite formatos populares como MP3 y MP4 para que siempre obtengas tu contenido exactamente como lo necesitas.",  
+        donationText: "Apoya Simply Links para ayudar a mantener este proyecto en funcionamiento <span class='heart'>&#10084;</span>",  
+        paypalBtn: "Donar con PayPal",  
+        revolutBtn: "Donar con Revolut"  
+      },  
+  
+      de: {  
+        subtitle: "Konvertieren",  
+        placeholder: "Link hier einfugen",  
+        mp3Button: "In MP3 konvertieren",  
+        mp4Button: "In MP4 konvertieren",  
+        pasteFirst: "Bitte zuerst einen Link einfugen.",  
+        downloading: "Wird heruntergeladen...",  
+        done: "Fertig!",  
+        errorPrefix: "Fehler: ",  
+        requestFailed: "Anfrage fehlgeschlagen",  
+        info1: "Simply Links ist ein leistungsstarkes und einfach zu bedienendes Tool, mit dem du Videos schnell und ohne Einschrankungen herunterladen und konvertieren kannst. Mit nur wenigen Klicks kannst du deine Lieblingsvideos oder Musik in der gewunschten Qualitat speichern.",  
+        info2: "Keine Registrierung ist erforderlich und es gibt keine komplizierten Schritte - Simply Links gibt dir die Freiheit, unbegrenzt Inhalte von YouTube und anderen beliebten Plattformen herunterzuladen. Der Vorgang ist schnell, reibungslos und zuverlassig.",  
+        info3: "Es unterstutzt beliebte Dateiformate wie MP3 und MP4, sodass du deine Inhalte genau so bekommst, wie du sie brauchst.",  
+        donationText: "Unterstutze Simply Links und hilf dabei, dieses Projekt am Laufen zu halten <span class='heart'>&#10084;</span>",  
+        paypalBtn: "Mit PayPal spenden",  
+        revolutBtn: "Mit Revolut spenden"  
+      },  
+  
+      fr: {  
+        subtitle: "Convertir",  
+        placeholder: "Collez le lien ici",  
+        mp3Button: "Convertir en MP3",  
+        mp4Button: "Convertir en MP4",  
+        pasteFirst: "Collez d'abord un lien.",  
+        downloading: "Telechargement...",  
+        done: "Termine!",  
+        errorPrefix: "Erreur: ",  
+        requestFailed: "Echec de la requete",  
+        info1: "Simply Links est un outil puissant et facile a utiliser qui vous permet de telecharger et convertir des videos rapidement et sans limitations. En quelques clics, vous pouvez enregistrer vos videos ou musiques preferees dans la qualite souhaitee.",  
+        info2: "Aucune inscription n'est requise et aucune etape compliquee n'est necessaire - Simply Links vous permet de telecharger du contenu sans limite depuis YouTube et d'autres plateformes populaires. Le processus est rapide, fluide et fiable.",  
+        info3: "Il prend en charge les formats les plus populaires, comme MP3 et MP4, pour obtenir votre contenu exactement comme vous le souhaitez.",  
+        donationText: "Soutenez Simply Links et aidez a faire vivre ce projet <span class='heart'>&#10084;</span>",  
+        paypalBtn: "Faire un don PayPal",  
+        revolutBtn: "Faire un don Revolut"  
+      },  
+  
+      it: {  
+        subtitle: "Converti",  
+        placeholder: "Incolla il link qui",  
+        mp3Button: "Converti in MP3",  
+        mp4Button: "Converti in MP4",  
+        pasteFirst: "Incolla prima un link.",  
+        downloading: "Download in corso...",  
+        done: "Fatto!",  
+        errorPrefix: "Errore: ",  
+        requestFailed: "Richiesta non riuscita",  
+        info1: "Simply Links e uno strumento potente e facile da usare che ti permette di scaricare e convertire video rapidamente e senza limitazioni. Con pochi clic puoi salvare i tuoi video o brani preferiti nella qualita che desideri.",  
+        info2: "Non e richiesta alcuna registrazione e non ci sono passaggi complicati - Simply Links ti offre la liberta di scaricare contenuti illimitati da YouTube e da altre piattaforme popolari. Il processo e veloce, fluido e affidabile.",  
+        info3: "Supporta i formati di file piu popolari, come MP3 e MP4, cosi puoi ottenere sempre i tuoi contenuti esattamente come ti servono.",  
+        donationText: "Supporta Simply Links e aiutami a mantenere attivo questo progetto <span class='heart'>&#10084;</span>",  
+        paypalBtn: "Dona con PayPal",  
+        revolutBtn: "Dona con Revolut"  
+      },  
+  
+      pt: {  
+        subtitle: "Converter",  
+        placeholder: "Cole o link aqui",  
+        mp3Button: "Converter para MP3",  
+        mp4Button: "Converter para MP4",  
+        pasteFirst: "Cole um link primeiro.",  
+        downloading: "Baixando...",  
+        done: "Concluido!",  
+        errorPrefix: "Erro: ",  
+        requestFailed: "Falha na solicitacao",  
+        info1: "Simply Links e uma ferramenta poderosa e facil de usar que permite baixar e converter videos rapidamente e sem limitacoes. Com apenas alguns cliques, voce pode salvar seus videos ou musicas favoritas na qualidade que preferir.",  
+        info2: "Nao e necessario registro e nao ha etapas complicadas - Simply Links oferece liberdade para baixar conteudo ilimitado do YouTube e de outras plataformas populares. O processo e rapido, suave e confiavel.",  
+        info3: "Suporta formatos populares como MP3 e MP4, para que voce sempre consiga seu conteudo exatamente do jeito que precisa.",  
+        donationText: "Apoie o Simply Links e ajude a manter este projeto funcionando <span class='heart'>&#10084;</span>",  
+        paypalBtn: "Doar com PayPal",  
+        revolutBtn: "Doar com Revolut"  
+      },  
+  
+      ru: {  
+        subtitle: "Konvertirovat",  
+        placeholder: "Vstavte ssylku zdes",  
+        mp3Button: "Konvertirovat v MP3",  
+        mp4Button: "Konvertirovat v MP4",  
+        pasteFirst: "Snachala vstavte ssylku.",  
+        downloading: "Zagruzka...",  
+        done: "Gotovo!",  
+        errorPrefix: "Oshibka: ",  
+        requestFailed: "Sboy zaprosa",  
+        info1: "Simply Links - eto udobnyi i moshchnyi instrument, kotoryi pozvolyaet bystro skachivat i konvertirovat video bez ogranichenii. Za neskolko klikov vy mozhete sokhranit lyubimye video ili muzyku v nuzhnom kachestve.",  
+        info2: "Registratsiya ne trebuetsya i slozhnykh shagov net - Simply Links daet vozmozhnost skachivat neogranichennyi kontent s YouTube i drugikh populyarnykh platform. Protsess bystryi, plavnyi i nadezhnyi.",  
+        info3: "Podderzhivayutsya populyarnye formaty, takie kak MP3 i MP4, chtoby vy vsegda poluchali kontent v nuzhnom vide.",  
+        donationText: "Podderzhite Simply Links i pomogite podderzhivat etot proekt <span class='heart'>&#10084;</span>",  
+        paypalBtn: "Donat cherez PayPal",  
+        revolutBtn: "Donat cherez Revolut"  
+      },  
+  
+      zh: {  
+        subtitle: "\u8f6c\u6362",  
+        placeholder: "\u5728\u6b64\u7c98\u8d34\u94fe\u63a5",  
+        mp3Button: "\u8f6c\u6362\u4e3a MP3",  
+        mp4Button: "\u8f6c\u6362\u4e3a MP4",  
+        pasteFirst: "\u8bf7\u5148\u7c98\u8d34\u4e00\u4e2a\u94fe\u63a5\u3002",  
+        downloading: "\u6b63\u5728\u4e0b\u8f7d...",  
+        done: "\u5b8c\u6210\uff01",  
+        errorPrefix: "\u9519\u8bef\uff1a",  
+        requestFailed: "\u8bf7\u6c42\u5931\u8d25",  
+        info1: "Simply Links \u662f\u4e00\u4e2a\u529f\u80fd\u5f3a\u5927\u4e14\u6613\u4e8e\u4f7f\u7528\u7684\u5de5\u5177\uff0c\u53ef\u4ee5\u8ba9\u4f60\u5feb\u901f\u4e14\u65e0\u9650\u5236\u5730\u4e0b\u8f7d\u548c\u8f6c\u6362 YouTube \u89c6\u9891\u3002\u53ea\u9700\u70b9\u51fb\u51e0\u4e0b\uff0c\u4f60\u5c31\u53ef\u4ee5\u5c06\u4f60\u559c\u7231\u7684\u89c6\u9891\u6216\u97f3\u4e50\u8f6c\u6362\u4e3a\u4f60\u60f3\u8981\u7684\u8d28\u91cf\uff0c\u5e76\u76f4\u63a5\u4fdd\u5b58\u5230\u4f60\u7684\u8bbe\u5907\u4e2d\u3002",  
+        info2: "\u65e0\u9700\u6ce8\u518c\uff0c\u4e5f\u4e0d\u9700\u8981\u590d\u6742\u6b65\u9aa4 - Simply Links \u8ba9\u4f60\u53ef\u4ee5\u81ea\u7531\u4e0b\u8f7d\u6765\u81ea YouTube \u548c\u5176\u4ed6\u793e\u4ea4\u5a92\u4f53\u5e73\u53f0\u7684\u65e0\u9650\u5185\u5bb9\u3002\u65e0\u8bba\u4f60\u60f3\u4e0b\u8f7d\u97f3\u4e50\u8fd8\u662f\u89c6\u9891\uff0c\u8fc7\u7a0b\u90fd\u5feb\u901f\u3001\u6d41\u7545\u4e14\u53ef\u9760\u3002",  
+        info3: "\u5b83\u652f\u6301 MP3 \u548c MP4 \u7b49\u6700\u5e38\u7528\u7684\u6587\u4ef6\u683c\u5f0f\uff0c\u8ba9\u4f60\u59cb\u7ec8\u4ee5\u9700\u8981\u7684\u65b9\u5f0f\u83b7\u53d6\u5185\u5bb9\u3002",  
+        donationText: "\u6350\u6b3e\u652f\u6301 Simply Links\uff0c\u5e2e\u52a9\u6211\u7ee7\u7eed\u7ef4\u62a4\u8fd9\u4e2a\u9879\u76ee <span class='heart'>&#10084;</span>",  
+        paypalBtn: "\u901a\u8fc7 PayPal \u6350\u6b3e",  
+        revolutBtn: "\u901a\u8fc7 Revolut \u6350\u6b3e"  
+      },  
+  
+      ja: {  
+        subtitle: "\u5909\u63db",  
+        placeholder: "\u3053\u3053\u306b\u30ea\u30f3\u30af\u3092\u8cbc\u308a\u4ed8\u3051\u3066\u304f\u3060\u3055\u3044",  
+        mp3Button: "MP3 \u306b\u5909\u63db",  
+        mp4Button: "MP4 \u306b\u5909\u63db",  
+        pasteFirst: "\u307e\u305a\u30ea\u30f3\u30af\u3092\u8cbc\u308a\u4ed8\u3051\u3066\u304f\u3060\u3055\u3044\u3002",  
+        downloading: "\u30c0\u30a6\u30f3\u30ed\u30fc\u30c9\u4e2d...",  
+        done: "\u5b8c\u4e86\u3057\u307e\u3057\u305f\uff01",  
+        errorPrefix: "\u30a8\u30e9\u30fc\uff1a",  
+        requestFailed: "\u30ea\u30af\u30a8\u30b9\u30c8\u306b\u5931\u6557\u3057\u307e\u3057\u305f",  
+        info1: "Simply Links \u306f\u3001YouTube \u52d5\u753b\u3092\u7c21\u5358\u304b\u3064\u5236\u9650\u306a\u304f\u9ad8\u901f\u3067\u30c0\u30a6\u30f3\u30ed\u30fc\u30c9\u304a\u3088\u3073\u5909\u63db\u3067\u304d\u308b\u5f37\u529b\u3067\u4f7f\u3044\u3084\u3059\u3044\u30c4\u30fc\u30eb\u3067\u3059\u3002\u6570\u56de\u30af\u30ea\u30c3\u30af\u3059\u308b\u3060\u3051\u3067\u3001\u304a\u6c17\u306b\u5165\u308a\u306e\u52d5\u753b\u3084\u97f3\u697d\u3092\u5e0c\u671b\u306e\u54c1\u8cea\u3067\u4fdd\u5b58\u3067\u304d\u307e\u3059\u3002",  
+        info2: "\u767b\u9332\u306f\u4e0d\u8981\u3067\u3001\u8907\u96d1\u306a\u624b\u9806\u3082\u3042\u308a\u307e\u305b\u3093 - Simply Links \u3092\u4f7f\u3048\u3070\u3001YouTube \u3084\u305d\u306e\u4ed6\u306e\u4eba\u6c17\u306e\u30bd\u30fc\u30b7\u30e3\u30eb\u30e1\u30c7\u30a3\u30a2\u304b\u3089\u7121\u5236\u9650\u306b\u30b3\u30f3\u30c6\u30f3\u30c4\u3092\u30c0\u30a6\u30f3\u30ed\u30fc\u30c9\u3067\u304d\u307e\u3059\u3002\u97f3\u697d\u3067\u3082\u52d5\u753b\u3067\u3082\u3001\u51e6\u7406\u306f\u9ad8\u901f\u3067\u30b9\u30e0\u30fc\u30ba\u3001\u305d\u3057\u3066\u4fe1\u983c\u3067\u304d\u307e\u3059\u3002",  
+        info3: "MP3 \u3084 MP4 \u306a\u3069\u306e\u4eba\u6c17\u306e\u30d5\u30a1\u30a4\u30eb\u5f62\u5f0f\u3092\u30b5\u30dd\u30fc\u30c8\u3057\u3066\u3044\u308b\u306e\u3067\u3001\u5fc5\u8981\u306a\u5f62\u3067\u30b3\u30f3\u30c6\u30f3\u30c4\u3092\u53d6\u5f97\u3067\u304d\u307e\u3059\u3002",  
+        donationText: "Simply Links \u3092\u5fdc\u63f4\u3057\u3066\u3001\u3053\u306e\u30d7\u30ed\u30b8\u30a7\u30af\u30c8\u3092\u7d9a\u3051\u3089\u308c\u308b\u3088\u3046\u3054\u5354\u529b\u304f\u3060\u3055\u3044 <span class='heart'>&#10084;</span>",  
+        paypalBtn: "PayPal \u3067\u5bc4\u4ed8",  
+        revolutBtn: "Revolut \u3067\u5bc4\u4ed8"  
+      },  
+  
+      ar: {  
+        subtitle: "\u062a\u062d\u0648\u064a\u0644",  
+        placeholder: "\u0627\u0644\u0635\u0642 \u0627\u0644\u0631\u0627\u0628\u0637 \u0647\u0646\u0627",  
+        mp3Button: "\u062a\u062d\u0648\u064a\u0644 \u0625\u0644\u0649 MP3",  
+        mp4Button: "\u062a\u062d\u0648\u064a\u0644 \u0625\u0644\u0649 MP4",  
+        pasteFirst: "\u064a\u0631\u062c\u0649 \u0644\u0635\u0642 \u0631\u0627\u0628\u0637 \u0623\u0648\u0644\u0627.",  
+        downloading: "\u062c\u0627\u0631\u064a \u0627\u0644\u062a\u062d\u0645\u064a\u0644...",  
+        done: "\u062a\u0645!",  
+        errorPrefix: "\u062e\u0637\u0623: ",  
+        requestFailed: "\u0641\u0634\u0644 \u0627\u0644\u0637\u0644\u0628",  
+        info1: "Simply Links \u0623\u062f\u0627\u0629 \u0642\u0648\u064a\u0629 \u0648\u0633\u0647\u0644\u0629 \u0627\u0644\u0627\u0633\u062a\u062e\u062f\u0627\u0645 \u062a\u0633\u0645\u062d \u0644\u0643 \u0628\u062a\u062d\u0645\u064a\u0644 \u0648\u062a\u062d\u0648\u064a\u0644 \u0645\u0642\u0627\u0637\u0639 YouTube \u0628\u0633\u0631\u0639\u0629 \u0648\u062f\u0648\u0646 \u0623\u064a \u0642\u064a\u0648\u062f. \u0628\u0628\u0636\u0639 \u0646\u0642\u0631\u0627\u062a \u0641\u0642\u0637\u060c \u064a\u0645\u0643\u0646\u0643 \u062a\u062d\u0648\u064a\u0644 \u0645\u0642\u0627\u0637\u0639\u0643 \u0623\u0648 \u0645\u0648\u0633\u064a\u0642\u0627\u0643 \u0627\u0644\u0645\u0641\u0636\u0644\u0629 \u0628\u0627\u0644\u062c\u0648\u062f\u0629 \u0627\u0644\u062a\u064a \u062a\u0631\u064a\u062f\u0647\u0627 \u0648\u062d\u0641\u0638\u0647\u0627 \u0645\u0628\u0627\u0634\u0631\u0629 \u0639\u0644\u0649 \u062c\u0647\u0627\u0632\u0643.",  
+        info2: "\u0644\u0627 \u064a\u0644\u0632\u0645 \u0627\u0644\u062a\u0633\u062c\u064a\u0644 \u0648\u0644\u0627 \u062a\u0648\u062c\u062f \u062e\u0637\u0648\u0627\u062a \u0645\u0639\u0642\u062f\u0629 - Simply Links \u064a\u0645\u0646\u062d\u0643 \u062d\u0631\u064a\u0629 \u062a\u062d\u0645\u064a\u0644 \u0645\u062d\u062a\u0648\u0649 \u063a\u064a\u0631 \u0645\u062d\u062f\u0648\u062f \u0645\u0646 YouTube \u0648\u0645\u0646\u0635\u0627\u062a \u0627\u0644\u062a\u0648\u0627\u0635\u0644 \u0627\u0644\u0627\u062c\u062a\u0645\u0627\u0639\u064a \u0627\u0644\u0634\u0627\u0626\u0639\u0629 \u0627\u0644\u0623\u062e\u0631\u0649. \u0633\u0648\u0627\u0621 \u0643\u0646\u062a \u062a\u0631\u064a\u062f \u0645\u0648\u0633\u064a\u0642\u0649 \u0623\u0648 \u0641\u064a\u062f\u064a\u0648\u0647\u0627\u062a\u060c \u0641\u0625\u0646 \u0627\u0644\u0639\u0645\u0644\u064a\u0629 \u0633\u0631\u064a\u0639\u0629 \u0648\u0633\u0644\u0633\u0629 \u0648\u0645\u0648\u062b\u0648\u0642\u0629.",  
+        info3: "\u0647\u0648 \u064a\u062f\u0639\u0645 \u0623\u0634\u0647\u0631 \u062a\u0646\u0633\u064a\u0642\u0627\u062a \u0627\u0644\u0645\u0644\u0641\u0627\u062a \u0645\u062b\u0644 MP3 \u0648 MP4\u060c \u0644\u0630\u0644\u0643 \u0633\u062a\u062d\u0635\u0644 \u062f\u0627\u0626\u0645\u0627 \u0639\u0644\u0649 \u0627\u0644\u0645\u062d\u062a\u0648\u0649 \u0628\u0627\u0644\u0634\u0643\u0644 \u0627\u0644\u0630\u064a \u062a\u062d\u062a\u0627\u062c\u0647.",  
+        donationText: "\u062a\u0628\u0631\u0639 \u0644\u0640 Simply Links \u0644\u062f\u0639\u0645 \u0639\u0645\u0644\u064a \u0648\u0627\u0644\u0645\u0633\u0627\u0639\u062f\u0629 \u0641\u064a \u0627\u0633\u062a\u0645\u0631\u0627\u0631 \u0647\u0630\u0627 \u0627\u0644\u0645\u0634\u0631\u0648\u0639 <span class='heart'>&#10084;</span>",  
+        paypalBtn: "\u062a\u0628\u0631\u0639 \u0639\u0628\u0631 PayPal",  
+        revolutBtn: "\u062a\u0628\u0631\u0639 \u0639\u0628\u0631 Revolut"  
+      }  
+    };  
+  
+    let currentLanguage = "en";  
+  
+    function clearRtlStyles() {  
+      const elements = [  
+        document.getElementById("subtitle"),  
+        document.getElementById("status"),  
+        document.getElementById("infoText"),  
+        document.getElementById("donationText"),  
+        document.getElementById("mp3Button"),  
+        document.getElementById("mp4Button"),  
+        document.getElementById("paypalBtn"),  
+        document.getElementById("revolutBtn")  
+      ];  
+  
+      elements.forEach(function(el) {  
+        el.classList.remove("rtl-text");  
+      });  
+  
+      document.getElementById("mainBox").classList.remove("rtl-box");  
+      document.getElementById("infoBox").classList.remove("rtl-box");  
+      document.getElementById("donationBox").classList.remove("rtl-box");  
+      document.getElementById("buttonGroup").classList.remove("rtl-buttons");  
+    }  
+  
+    function applyArabicLayout() {  
+      const elements = [  
+        document.getElementById("subtitle"),  
+        document.getElementById("status"),  
+        document.getElementById("infoText"),  
+        document.getElementById("donationText"),  
+        document.getElementById("mp3Button"),  
+        document.getElementById("mp4Button"),  
+        document.getElementById("paypalBtn"),  
+        document.getElementById("revolutBtn")  
+      ];  
+  
+      elements.forEach(function(el) {  
+        el.classList.add("rtl-text");  
+      });  
+  
+      document.getElementById("mainBox").classList.add("rtl-box");  
+      document.getElementById("infoBox").classList.add("rtl-box");  
+      document.getElementById("donationBox").classList.add("rtl-box");  
+      document.getElementById("buttonGroup").classList.add("rtl-buttons");  
+    }  
+  
+    function applyLanguage(lang) {  
+      currentLanguage = lang;  
+      const t = translations[lang] || translations.en;  
+  
+      document.documentElement.lang = lang;  
+      document.getElementById("subtitle").textContent = t.subtitle;  
+      document.getElementById("url").placeholder = t.placeholder;  
+      document.getElementById("mp3Button").textContent = t.mp3Button;  
+      document.getElementById("mp4Button").textContent = t.mp4Button;  
+      document.getElementById("infoText").textContent = t.info1 + " " + t.info2 + " " + t.info3;  
+      document.getElementById("donationText").innerHTML = t.donationText;  
+      document.getElementById("paypalBtn").textContent = t.paypalBtn;  
+      document.getElementById("revolutBtn").textContent = t.revolutBtn;  
+      document.getElementById("status").textContent = "";  
+  
+      clearRtlStyles();  
+  
+      if (lang === "ar") {  
+        applyArabicLayout();  
+      }  
+  
+      localStorage.setItem("lang", lang);  
+    }  
+  
+    function changeLanguage() {  
+      const lang = document.getElementById("languageSelect").value;  
+      applyLanguage(lang);  
+    }  
+  
+    async function convert(format) {  
+      const url = document.getElementById("url").value.trim();  
+      const status = document.getElementById("status");  
+      const t = translations[currentLanguage] || translations.en;  
+  
+      if (!url) {  
+        status.textContent = t.pasteFirst;  
+        return;  
+      }  
+  
+      status.textContent = t.downloading;  
+  
+      try {  
+        const res = await fetch("/convert", {  
+          method: "POST",  
+          headers: { "Content-Type": "application/json" },  
+          body: JSON.stringify({ url, format })  
+        });  
+  
+        const textIfError = !res.ok ? await res.text() : null;  
+  
+        if (!res.ok) {  
+          status.textContent = textIfError || (t.requestFailed + " (" + res.status + ")");  
+          return;  
+        }  
+  
+        const blob = await res.blob();  
+        const objectUrl = URL.createObjectURL(blob);  
+        const a = document.createElement("a");  
+  
+        a.href = objectUrl;  
+        a.download = format === "mp3" ? "audio.mp3" : "video.mp4";  
+        document.body.appendChild(a);  
+        a.click();  
+        a.remove();  
+        URL.revokeObjectURL(objectUrl);  
+  
+        status.textContent = t.done;  
+      } catch (err) {  
+        console.error(err);  
+        status.textContent = t.errorPrefix + err.message;  
+      }  
+    }  
+  
+    function setupDogCollisionAnimation() {  
+      const title = document.getElementById("siteTitle");  
+      const dogWrap = document.getElementById("dogWrap");  
+      const dogVideo = document.getElementById("dogVideo");  
+      const hero = document.querySelector(".hero");  
+  
+      if (!title || !dogWrap || !dogVideo || !hero) return;  
+  
+      function updateVerticalPosition() {  
+        const titleRect = title.getBoundingClientRect();  
+        const heroRect = hero.getBoundingClientRect();  
+        const topInsideHero =  
+          (titleRect.top - heroRect.top) +  
+          (titleRect.height / 2) -  
+          (dogWrap.offsetHeight / 2) -  
+          18;  
+  
+        dogWrap.style.top = topInsideHero + "px";  
+      }  
+  
+      function getCollisionLeft() {  
+        const heroRect = hero.getBoundingClientRect();  
+        const titleRect = title.getBoundingClientRect();  
+        const dogW = dogWrap.offsetWidth || 240;  
+        const sHitX = (titleRect.left - heroRect.left) + titleRect.width * 1.295;  
+        return sHitX - dogW * 0.58;  
+      }  
+  
+      function startMotion() {  
+        updateVerticalPosition();  
+  
+        const startLeft = hero.clientWidth + 40;  
+        const endLeft = getCollisionLeft();  
+        const durationMs = 1620;  
+        const startTime = performance.now();  
+  
+        dogWrap.style.left = startLeft + "px";  
+        dogWrap.style.opacity = "1";  
+  
+        function frame(now) {  
+          const p = Math.min((now - startTime) / durationMs, 1);  
+          const eased = 1 - Math.pow(1 - p, 3);  
+          const x = startLeft + (endLeft - startLeft) * eased;  
+          dogWrap.style.left = x + "px";  
+  
+          if (p < 1) {  
+            requestAnimationFrame(frame);  
+          } else {  
+            dogWrap.style.left = endLeft + "px";  
+          }  
+        }  
+  
+        requestAnimationFrame(frame);  
+      }  
+  
+      let started = false;  
+  
+      function safeStart() {  
+        if (started) return;  
+        started = true;  
+        dogVideo.currentTime = 0;  
+        dogVideo.play().catch(function() {});  
+        startMotion();  
+      }  
+  
+      dogVideo.addEventListener("loadeddata", safeStart);  
+      dogVideo.addEventListener("canplay", safeStart);  
+  
+      window.addEventListener("load", function() {  
+        setTimeout(safeStart, 300);  
+      });  
+  
+      dogVideo.addEventListener("ended", function() {  
+        dogVideo.pause();  
+        dogWrap.style.left = getCollisionLeft() + "px";  
+      });  
+  
+      window.addEventListener("resize", function() {  
+        updateVerticalPosition();  
+        if (dogVideo.paused) {  
+          dogWrap.style.left = getCollisionLeft() + "px";  
+        }  
+      });  
+    }  
+  
+    window.onload = function() {  
+      const savedLang = localStorage.getItem("lang") || "en";  
+      document.getElementById("languageSelect").value = savedLang;  
+      applyLanguage(savedLang);  
+      setupDogCollisionAnimation();  
+    };  
+  </script>  </body>  
+</html>

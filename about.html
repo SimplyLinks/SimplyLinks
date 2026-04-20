@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>About Us - Simply Links</title>
+
+  <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap" rel="stylesheet">
+
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #fcfcfa;
+      color: #222;
+    }
+
+    .page-wrap {
+      width: 100%;
+      padding: 50px 20px;
+      display: flex;
+      justify-content: center;
+    }
+
+    .container {
+      width: 100%;
+      max-width: 820px;
+      background: #ffffff;
+      padding: 35px;
+      border-radius: 14px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+      border: 1px solid #e5e5e5;
+    }
+
+    .title-row {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 18px;
+      margin-bottom: 25px;
+    }
+
+    .title-text {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .welcome {
+      font-size: 32px;
+      color: #d85c5c; /* πιο εντονο κοκκινο */
+      position: relative;
+      left: -8px;
+      font-weight: normal; /* χωρις bold */
+    }
+
+    .brand {
+      font-family: "Great Vibes", cursive;
+      font-size: 72px;
+      color: #000;
+      line-height: 1;
+    }
+
+    .dog-image {
+      width: 82px;
+      height: auto;
+      margin-left: 2px; /* πιο κοντα στο Links */
+      transform: translateY(-17px);
+    }
+
+    #infoText {
+      font-size: 18px;
+      line-height: 1.9;
+      color: #2f2f2f;
+      text-align: justify;
+      text-align-last: left;
+      max-width: 760px;
+      margin: 0 auto;
+    }
+
+    .back-link {
+      display: block;
+      text-align: center;
+      margin-top: 30px;
+      text-decoration: none;
+      color: #1e88e5;
+      font-size: 14px;
+    }
+
+    @media (max-width: 600px) {
+      .title-row {
+        flex-direction: column;
+      }
+
+      .title-text {
+        justify-content: center;
+        flex-wrap: wrap;
+      }
+
+      .welcome {
+        font-size: 24px;
+        left: 0;
+      }
+
+      .brand {
+        font-size: 50px;
+      }
+
+      .dog-image {
+        width: 130px;
+        transform: translateY(-4px);
+      }
+
+      #infoText {
+        font-size: 16px;
+        line-height: 1.8;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="page-wrap">
+    <div class="container">
+
+      <div class="title-row">
+        <div class="title-text">
+          <span class="welcome">Welcome to</span>
+          <span class="brand">Simply Links</span>
+        </div>
+
+        <img src="dog.png" alt="dog" class="dog-image">
+      </div>
+
+      <p id="infoText">
+        Our website provides a simple and user-friendly online tool for converting publicly accessible media into different formats. The service allows users to process links from various platforms and convert them into commonly used formats such as MP3 or MP4 for personal use. We do not host, store, or distribute any media files. All content is processed from third-party sources, and users are solely responsible for ensuring that they have the legal right to use any content they access. Our goal is to offer a fast, reliable, and easy-to-use media conversion tool while respecting intellectual property rights and applicable laws.
+      </p>
+
+      <a href="index.html" class="back-link">Back to home</a>
+
+    </div>
+  </div>
+
+</body>
+</html>
